@@ -13,7 +13,7 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 
-public class HelloController {
+public class AssistantController {
 
     @FXML
     private WebView chatView;

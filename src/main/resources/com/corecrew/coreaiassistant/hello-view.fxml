@@ -1,16 +1,30 @@
-<?xml version="1.0" encoding="UTF-8"?>
-
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.VBox?>
-
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.web.WebView?>
+<?import org.fxmisc.richtext.CodeArea?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.control.Button?>
-<VBox alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml"
-      fx:controller="com.corecrew.coreaiassistant.HelloController">
-    <padding>
-        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
-    </padding>
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.corecrew.coreaiassistant.AssistantController">
 
-    <Label fx:id="welcomeText"/>
-    <Button text="Hello!" onAction="#onHelloButtonClick"/>
-</VBox>
+    <!-- Chat Area -->
+    <center>
+        <WebView fx:id="chatView" prefHeight="500"/>
+    </center>
+
+    <!-- Footer Input -->
+    <bottom>
+        <HBox spacing="8" styleClass="input-footer" alignment="CENTER_LEFT">
+            <CodeArea fx:id="codeInput"
+                      wrapText="true"
+                      styleClass="code-input"
+                      prefHeight="60"
+                      HBox.hgrow="ALWAYS" />
+            <Button text="Send"
+                    fx:id="sendButton"
+                    onAction="#onSendClicked"
+                    styleClass="send-button"
+                    prefWidth="100"
+                    minHeight="60"/>
+        </HBox>
+    </bottom>
+</BorderPane>

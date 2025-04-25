@@ -26,16 +26,25 @@ tasks.withType(JavaCompile) {
 
 application {
     mainModule = 'com.corecrew.coreaiassistant'
-    mainClass = 'com.corecrew.coreaiassistant.HelloApplication'
+    mainClass = 'com.corecrew.coreaiassistant.AssistantApplication'
+    executableDir='build'
 }
 
 javafx {
-    version = '17.0.6'
-    modules = ['javafx.controls', 'javafx.fxml']
+    version = '17.0.15'
+    modules = ['javafx.controls', 'javafx.fxml', 'javafx.web']
 }
 
 dependencies {
-    implementation('org.kordamp.bootstrapfx:bootstrapfx-core:0.4.0')
+//    implementation('org.kordamp.bootstrapfx:bootstrapfx-core:0.4.0')
+
+    implementation ('org.json:json:20240303')
+    implementation("org.springframework.boot:spring-boot-starter-webflux:3.4.5")
+
+    implementation 'org.fxmisc.richtext:richtextfx:0.10.9'
+    implementation 'com.vladsch.flexmark:flexmark-all:0.64.0'
+    implementation 'com.squareup.okhttp3:okhttp:4.12.0'
+
 
     testImplementation("org.junit.jupiter:junit-jupiter-api:${junitVersion}")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${junitVersion}")
@@ -55,4 +64,16 @@ jlink {
 
 jlinkZip {
     group = 'distribution'
+}
+
+sourceSets {
+    main {
+        resources {
+            srcDir 'src/main/resources'  // This ensures the resources folder is included in the build.
+        }
+    }
+}
+
+tasks.withType(ProcessResources) {
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE  // Skip duplicates
 }

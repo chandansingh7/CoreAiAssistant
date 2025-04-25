@@ -1,0 +1,142 @@
+.chat-container {
+    -fx-background-color: #2e2e2e;
+    -fx-padding: 16px;
+}
+
+/* Main CodeArea styling */
+.code-input {
+    -fx-font-family: "Consolas", "Courier New", monospace;
+    -fx-font-size: 14px;
+    -fx-background-color: #1e1e1e;
+    -fx-text-fill: white;
+    -fx-border-color: #444444;
+    -fx-border-radius: 6px;
+    -fx-padding: 6px;
+}
+
+code {
+    background: rgba(0, 0, 0, 0.08);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-family: Consolas, monospace;
+    font-size: 14px;
+    line-height: 1.5;
+    white-space: nowrap;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+/* Inner RichTextFX content fix */
+.code-input .styled-text-area {
+    -fx-background-color: #1e1e1e;
+    -fx-text-fill: white;
+    -fx-padding: 6px;
+}
+
+.code-input .paragraph-box {
+    -fx-background-color: #1e1e1e;
+    -fx-text-fill: white;
+    -fx-padding: 0px;
+}
+
+.code-input .text {
+    -fx-fill: white;
+}
+
+/* Fix vertical cutting issue */
+.code-input .paragraph-box .text {
+    -fx-line-spacing: 6px;
+}
+
+/* Button */
+.send-button {
+    -fx-background-color: #007BFF;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-padding: 8px 16px;
+    -fx-border-radius: 6px;
+    -fx-cursor: hand;
+}
+
+/* Embedded HTML inside WebView */
+.webview-style {
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    line-height: 1.6;
+    background-color: #ffffff;
+    color: #333333;
+}
+
+.chat-container-html {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding: 16px;
+}
+
+.message {
+    max-width: 80%;
+    padding: 12px 16px;
+    border-radius: 12px;
+    word-wrap: break-word;
+}
+
+.message.user {
+    align-self: flex-end;
+    background-color: #007aff;
+    color: #ffffff;
+    border-bottom-right-radius: 4px;
+}
+
+.message.ai {
+    align-self: flex-start;
+    background-color: #f1f1f2;
+    color: #000000;
+    border-bottom-left-radius: 4px;
+}
+
+.message pre {
+    background-color: #2d2d2d;
+    color: #f8f8f2;
+    padding: 10px;
+    border-radius: 6px;
+    overflow-x: auto;
+    font-family: "Consolas", monospace;
+    white-space: pre-wrap;
+    word-break: break-word;
+}
+
+.message code {
+    background: rgba(0, 0, 0, 0.05);
+    padding: 2px 4px;
+    border-radius: 4px;
+    font-family: "Consolas", monospace;
+}
+
+
+
+.input-footer {
+    -fx-padding: 10px;
+    -fx-background-color: #f3f3f3;
+    -fx-border-color: #ccc;
+    -fx-border-width: 1px 0 0 0;
+}
+
+.code-input {
+    -fx-font-family: "Consolas", "Courier New", monospace;
+    -fx-font-size: 14px;
+    -fx-background-color: #1e1e1e;
+    -fx-text-fill: #ffffff;
+    -fx-border-color: #444444;
+    -fx-border-radius: 6px;
+    -fx-padding: 10px;
+}
+
+.send-button {
+    -fx-background-color: #007BFF;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-padding: 10px 16px;
+    -fx-border-radius: 6px;
+    -fx-cursor: hand;
+}

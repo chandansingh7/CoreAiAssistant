@@ -22,11 +22,18 @@ public class SpeechToTextService {
         this.listener = listener;
 
         String projectRoot = System.getProperty("user.dir");
-        String pythonPath = projectRoot + "/venv/bin/python3";  // Path to venv python
-        String scriptPath = projectRoot + "/src/main/java/com/corecrew/coreaiassistant/service/voice_listener.py";
 
-        // Use -u for unbuffered stdout so we get real-time lines
-        ProcessBuilder pb = new ProcessBuilder(pythonPath, "-u", scriptPath);
+        // **POINT TO YOUR pyenv PYTHON** here:
+        String pythonPath = "/Users/chandan/.pyenv/versions/3.10.11/bin/python3";
+
+        // path to your listener script
+        String scriptPath = projectRoot
+                + "/src/main/java/com/corecrew/coreaiassistant/service/facebook/hf_voice_listener.py";
+
+        // -u = unbuffered stdout, so we see Python prints in real time
+        ProcessBuilder pb = new ProcessBuilder(
+                pythonPath, "-u", scriptPath
+        );
         pb.directory(new File(projectRoot));
         pb.redirectErrorStream(true);
 
@@ -44,7 +51,7 @@ public class SpeechToTextService {
                         continue;  // skip blanks
                     }
 
-                    // Strip any emoji prefix from Python output
+                    // Strip any emoji prefix (🗣️ ) from Python output
                     if (line.startsWith("🗣️")) {
                         int idx = line.indexOf(' ');
                         if (idx != -1) {
@@ -53,7 +60,7 @@ public class SpeechToTextService {
                     }
 
                     final String recognizedText = line;
-                    // Ensure callback on JavaFX Application Thread
+                    // Callback onto JavaFX application thread
                     Platform.runLater(() -> listener.onSpeechRecognized(recognizedText));
                 }
             } catch (IOException e) {
@@ -66,10 +73,10 @@ public class SpeechToTextService {
 
     public void stopListening() throws IOException {
         if (process != null) {
-            process.destroy();  // send SIGTERM
+            process.destroy();  // SIGTERM
             try {
                 if (!process.waitFor(1, TimeUnit.SECONDS)) {
-                    process.destroyForcibly();  // if still alive, kill it hard
+                    process.destroyForcibly();
                 }
             } catch (InterruptedException e) {
                 process.destroyForcibly();

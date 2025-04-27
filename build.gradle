@@ -11,6 +11,12 @@ version '1.0-SNAPSHOT'
 
 repositories {
     mavenCentral()
+    maven {
+        url "https://oss.sonatype.org/content/repositories/snapshots"
+        mavenContent {
+            snapshotsOnly()
+        }
+    }
 }
 
 ext {
@@ -36,18 +42,15 @@ javafx {
 }
 
 dependencies {
-//    implementation('org.kordamp.bootstrapfx:bootstrapfx-core:0.4.0')
 
-    implementation ('org.json:json:20240303')
-    implementation("org.springframework.boot:spring-boot-starter-webflux:3.4.5")
-
+//    implementation 'edu.cmu.sphinx:sphinx4-core:5prealpha-SNAPSHOT'
+    implementation 'org.json:json:20240303'
+    implementation 'org.springframework.boot:spring-boot-starter-webflux:3.4.5'
     implementation 'org.fxmisc.richtext:richtextfx:0.10.9'
     implementation 'com.vladsch.flexmark:flexmark-all:0.64.0'
     implementation 'com.squareup.okhttp3:okhttp:4.12.0'
-
-
-    testImplementation("org.junit.jupiter:junit-jupiter-api:${junitVersion}")
-    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${junitVersion}")
+    testImplementation "org.junit.jupiter:junit-jupiter-api:${junitVersion}"
+    testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:${junitVersion}"
 }
 
 test {
